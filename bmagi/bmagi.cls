@@ -26,7 +26,7 @@
 \definecolor{GPoly}{RGB}{35,31,32}
 
 % Thème
-\usecolortheme[named=BPoly]{structure}
+\usecolortheme[named=GPoly]{structure}
 
 % Texte
 %% Polices
@@ -38,9 +38,12 @@
 \setbeamerfont{section title}{family=\sffamily, series=\bfseries}
 \setbeamerfont{subsection title}{family=\sffamily, series=\bfseries}
 
-\setbeamerfont{author}{family=\rmfamily, series=\mdseries}
+\setbeamerfont{author}{series=\mdseries}
 \setbeamerfont{itemize item}{series=\bfseries}
 \setbeamerfont{enumerate item}{series=\bfseries}
+
+\setbeamerfont{frametitle}{family=\sffamily, series=\bfseries, size=\Large}
+\setbeamerfont{framesubtitle}{family=\sffamily, series=\mdseries}
 
 \setbeamerfont{block title}{family=\sffamily, series=\bfseries}
 
