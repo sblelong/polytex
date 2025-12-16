@@ -18,8 +18,8 @@
 \usepackage{amsmath,amsfonts,amssymb,amsthm,bbm}
 \usepackage{textcase,regexpatch}
 
-% \usepackage{enumitem}
-% \setlist[itemize]{label=$\rhd$}
+\usepackage{enumitem}
+\setlist[itemize]{label=$\rhd$}
 
 % Couleurs de Poly
 \definecolor{BPoly}{RGB}{80,187,230}
@@ -169,7 +169,7 @@
 		\textcolor{primary}{\rule{\textwidth}{1pt}}
 		\begin{figure}
 			\centering
-			\includegraphics[width=0.3\textwidth]{/Users/sacha/texmf/tex/latex/polytex/bmagi/figs/Polytechnique.png}
+			\includegraphics[width=0.3\textwidth]{~/texmf/tex/latex/polytex/bmagi/figs/Polytechnique.png}
 		\end{figure}
 		\ifx\insertdate\@empty\else\usebeamertemplate*{date}\fi
 		\ifx\beamer@shortauthor\@empty\else\usebeamertemplate*{author}\fi
