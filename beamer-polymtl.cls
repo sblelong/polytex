@@ -61,7 +61,7 @@
 
 \setbeamerfont{verse}{series=\itshape}
 
-\setbeamerfont{section in head/foot}{size=\small}
+\setbeamerfont{section in head/foot}{size=\footnotesize}
 
 %% Couleurs
 \setbeamercolor{normal text}{fg=black}
