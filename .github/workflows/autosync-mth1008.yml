@@ -1,0 +1,28 @@
+name: Sync beamer-polymtl to MTH1008 repo
+
+on:
+  push:
+    paths:
+      - '**.cls'  # triggers only when a .bib file changes
+  workflow_dispatch:  # allow manual triggering too
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Clone Overleaf project
+        run: |
+          git clone "https://${{ secrets.OVERLEAF_NTH1008_USER }}:${{ secrets.OVERLEAF_MTH1008_TOKEN }}@${{ secrets.OVERLEAF_MTH1008_URL }}" overleaf
+      - name: Copy .cls file
+        run: |
+          cp beamer-polymtl.cls overleaf/beamer-polymtl.cls
+      - name: Commit and push to Overleaf
+        run: |
+          cd overleaf
+          git config user.name "git"
+          git config user.email "action@github.com"
+          git add ./beamer-polymtl.cls
+          git commit -m "Auto-sync beamer-polymtl template" || echo "No changes to commit"
+          git push "https://${{ secrets.OVERLEAF_MTH1008_USER }}:${{ secrets.OVERLEAF_MTH1008_TOKEN }}@${{ secrets.OVERLEAF_MTH1008_URL }}"
