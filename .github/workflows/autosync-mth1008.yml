@@ -14,7 +14,7 @@ jobs:
 
       - name: Clone Overleaf project
         run: |
-          git clone "https://${{ secrets.OVERLEAF_NTH1008_USER }}:${{ secrets.OVERLEAF_MTH1008_TOKEN }}@${{ secrets.OVERLEAF_MTH1008_URL }}" overleaf
+          git clone "https://${{ secrets.OVERLEAF_MTH1008_USER }}:${{ secrets.OVERLEAF_MTH1008_TOKEN }}@${{ secrets.OVERLEAF_MTH1008_URL }}" overleaf
       - name: Copy .cls file
         run: |
           cp beamer-polymtl.cls overleaf/beamer-polymtl.cls
