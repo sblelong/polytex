@@ -6,7 +6,7 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{beamer-polymtl}[2026-01-01, v0.1]
 \PassOptionsToPackage{svgnames}{xcolor}
-\LoadClass[compress,11pt,aspectratio=169,serif,professionalfont]{beamer}
+\LoadClass[compress,10pt,aspectratio=169,serif,professionalfont]{beamer}
 
 % Packages nécessaires
 \usepackage[french]{babel}
@@ -67,17 +67,12 @@
 \setbeamercolor{normal text}{fg=black}
 \setbeamercolor{title}{fg=black}
 \setbeamercolor{alerted text}{fg=RPoly}
-\setbeamercolor{block title}{bg=primary, fg=white}
-\setbeamercolor{block body}{bg=primary!10, fg=primary}
+\setbeamercolor{block title}{bg=BPoly, fg=white}
+\setbeamercolor{block body}{bg=primary!10, fg=black}
 \setbeamercolor{block title alerted}{bg=RPoly, fg=white}
-\setbeamercolor{block body alerted}{bg=RPoly!10, fg=RPoly!110}
+\setbeamercolor{block body alerted}{bg=primary!10, fg=black}
 \setbeamercolor{block title example}{bg=VPoly, fg=white}
-\setbeamercolor{block body example}{bg=VPoly!10, fg=VPoly!110}
-
-\setbeamercolor{foot blue}{bg=BPoly, fg=white}
-\setbeamercolor{foot green}{bg=VPoly, fg=white}
-\setbeamercolor{foot orange}{bg=OPoly, fg=white}
-\setbeamercolor{foot red}{bg=RPoly, fg=white}
+\setbeamercolor{block body example}{bg=primary!10, fg=black}
 
 \setbeamercolor{header}{bg=primary, fg=white}
 \setbeamercolor{section title}{bg=primary, fg=white}
@@ -91,6 +86,15 @@
 \useoutertheme[subsection=false]{miniframes}
 \setbeamertemplate{navigation symbols}{}
 \setbeamertemplate{blocks}[rectangle]
+
+\newenvironment{noticeblock}[1]{%
+    \setbeamercolor{block title}{bg=OPoly, fg=white}%
+    \setbeamercolor{block body}{bg=primary!10, fg=black}%
+    \begin{block}{#1}%
+        }{%
+    \end{block}%
+}
+
 
 \newcommand{\thecourse}{}
 \newcommand{\course}[1]{\renewcommand{\thecourse}{#1}}
@@ -123,7 +127,7 @@
     \begin{beamercolorbox}[wd=\paperwidth,center]{section in head/foot}
         \vskip2.5ex
         \vskip-\baselineskip
-        \insertnavigation{110pt}%
+        \insertnavigation{\paperwidth}%
         \vskip1.125ex
     \end{beamercolorbox}%
     \ifbeamer@theme@subsection%
@@ -140,7 +144,7 @@
     \vskip-0.035cm
     \begin{beamercolorbox}[wd=\paperwidth,ht=0.5cm,dp=0.2cm,left]{frametitle}
         \hspace{0.15cm}
-        \insertframetitle
+        \insertframetitle~|~{\usebeamerfont{framesubtitle}\insertframesubtitle}
         \hspace{0.15cm}
     \end{beamercolorbox}
 }
@@ -150,8 +154,8 @@
 \setbeamertemplate{footline}{
     \hbox{
         \begin{beamercolorbox}[wd=0.9\paperwidth, ht=2.25ex, dp=1ex, left]{white}
-            \hspace{0.5cm}\insertframenumber\,/\,\inserttotalframenumber
-            \vspace{0.1cm}
+            \hspace{0.3cm}\insertframenumber\,/\,\inserttotalframenumber
+            % \vspace{0.2cm}
         \end{beamercolorbox}
         \begin{beamercolorbox}[wd=0.1\paperwidth, ht=2.25ex, dp=1ex, left]{white}
             \vspace{-0.1cm}
