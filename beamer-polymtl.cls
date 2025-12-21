@@ -143,9 +143,14 @@
 \setbeamertemplate{frametitle}{
     \vskip-0.035cm
     \begin{beamercolorbox}[wd=\paperwidth,ht=0.5cm,dp=0.2cm,left]{frametitle}
-        \hspace{0.15cm}
-        \insertframetitle~|~{\usebeamerfont{framesubtitle}\insertframesubtitle}
-        \hspace{0.15cm}
+        \hspace{0.15cm}%
+        \insertframetitle%
+        \ifx\insertframesubtitle\@empty
+            % no subtitle → do nothing
+        \else
+            ~|~{\usebeamerfont{framesubtitle}\insertframesubtitle}%
+        \fi
+        \hspace{0.15cm}%
     \end{beamercolorbox}
 }
 
