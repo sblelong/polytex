@@ -6,7 +6,11 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{beamer-polymtl}[2026-01-01, v0.1]
 \PassOptionsToPackage{svgnames}{xcolor}
-\LoadClass[compress,10pt,aspectratio=169,serif,professionalfont]{beamer}
+\DeclareOption*{%
+    \PassOptionsToClass{\CurrentOption}{beamer}%
+}
+\ProcessOptions\relax
+\LoadClass[compress,aspectratio=169]{beamer}
 
 % Packages nécessaires
 \usepackage[french]{babel}
@@ -19,15 +23,12 @@
 \usepackage{amsmath,amsfonts,amssymb,amsthm,bbm}
 \usepackage{textcase,regexpatch}
 
-% \usepackage{enumitem}
-% \setlist[itemize]{label=$\rhd$}
-
 % Couleurs de l'identité visuelle de PolyMtl
 % Mises à jour suite à la nouvelle identité (automne 2025): voir https://www.polymtl.ca/salle-de-presse/logos-et-normes-graphiques
-\definecolor{RPoly}{RGB}{237,28,36}
-\definecolor{OPoly}{RGB}{241,90,34}
-\definecolor{VPoly}{RGB}{37,179,75}
-\definecolor{BPoly}{RGB}{0,189,242}
+\definecolor{RPoly}{RGB}{192,23,29}
+\definecolor{OPoly}{RGB}{192,71,27}
+\definecolor{VPoly}{RGB}{32,154,65}
+\definecolor{BPoly}{RGB}{0,147,192}
 
 % Ces deux couleurs ne font pas partie de l'identité, mais contrastent bien.
 \definecolor{GPoly}{RGB}{166,168,171}
@@ -39,8 +40,9 @@
 % Texte
 %% Polices
 
-\usepackage{pxfonts}
-\usepackage{eulervm}
+% \usepackage{pxfonts}
+% \usepackage{eulervm}
+\usefonttheme[onlymath]{serif}
 
 \setbeamerfont{normal text}{series=\mdseries}
 \setbeamerfont{alerted text}{series=\bfseries}
@@ -63,6 +65,8 @@
 
 \setbeamerfont{section in head/foot}{size=\footnotesize}
 
+% \setbeamerfont{page number in head/foot}{series=\mdseries, size=\tiny}
+
 %% Couleurs
 \setbeamercolor{normal text}{fg=black}
 \setbeamercolor{title}{fg=black}
@@ -78,8 +82,8 @@
 \setbeamercolor{section title}{bg=primary, fg=white}
 \setbeamercolor{part title}{bg=primary, fg=white}
 
-\setbeamercolor{section in head/foot}{bg=primary,fg=white}
-\setbeamercolor{frametitle}{bg=primary!10,fg=primary}
+\setbeamercolor{section in head/foot}{bg=primary!10,fg=primary}
+\setbeamercolor{frametitle}{bg=primary,fg=white}
 
 % Thèmes généraux
 \useinnertheme{rectangles}
@@ -122,28 +126,33 @@
 % \end{beamercolorbox}%
 % Second box, right-aligned
 
+% \defbeamertemplate*{headline}{}
+% {%
+%     \begin{beamercolorbox}[wd=\paperwidth,center]{section in head/foot}
+%         \vskip2.5ex
+%         \vskip-\baselineskip
+%         \insertnavigation{\paperwidth}%
+%         \vskip1.125ex
+%     \end{beamercolorbox}%
+%     \ifbeamer@theme@subsection%
+%         \begin{beamercolorbox}[colsep=1.5pt]{middle separation line head}
+%         \end{beamercolorbox}
+%         \begin{beamercolorbox}[ht=2.5ex,dp=1.125ex,%
+%                 leftskip=.3cm,rightskip=.3cm plus1fil]{subsection in head/foot}
+%             \usebeamerfont{subsection in head/foot}\usebeamertemplate{subsection in head/foot}
+%         \end{beamercolorbox}%
+%     \fi%
+% }
+
 \defbeamertemplate*{headline}{}
-{%
-    \begin{beamercolorbox}[wd=\paperwidth,center]{section in head/foot}
-        \vskip2.5ex
-        \vskip-\baselineskip
-        \insertnavigation{\paperwidth}%
-        \vskip1.125ex
-    \end{beamercolorbox}%
-    \ifbeamer@theme@subsection%
-        \begin{beamercolorbox}[colsep=1.5pt]{middle separation line head}
-        \end{beamercolorbox}
-        \begin{beamercolorbox}[ht=2.5ex,dp=1.125ex,%
-                leftskip=.3cm,rightskip=.3cm plus1fil]{subsection in head/foot}
-            \usebeamerfont{subsection in head/foot}\usebeamertemplate{subsection in head/foot}
-        \end{beamercolorbox}%
-    \fi%
+{
+
 }
 
 \setbeamertemplate{frametitle}{
     \vskip-0.035cm
     \begin{beamercolorbox}[wd=\paperwidth,ht=0.5cm,dp=0.2cm,left]{frametitle}
-        \hspace{0.15cm}%
+        \hspace{0.2cm}%
         \insertframetitle%
         \ifx\insertframesubtitle\@empty
             % no subtitle → do nothing
@@ -155,23 +164,37 @@
 }
 
 
-% Pied de page
+% % Pied de page
+% \setbeamertemplate{footline}{
+%     \hbox{
+%         \begin{beamercolorbox}[wd=0.9\paperwidth, ht=2.25ex, dp=1ex, left]{white}
+%             \hspace{0.3cm}\insertframenumber\,/\,\inserttotalframenumber
+%             % \vspace{0.2cm}
+%         \end{beamercolorbox}
+%         \begin{beamercolorbox}[wd=0.1\paperwidth, ht=2.25ex, dp=1ex, left]{white}
+%             \vspace{-0.1cm}
+%             \begin{tikzpicture}
+%                 \fill[RPoly] (0,0) rectangle (0.25,0.25);
+%                 \fill[OPoly] (0.25,0) rectangle (0.5,0.25);
+%                 \fill[VPoly] (0.5,0) rectangle (0.75,0.25);
+%                 \fill[BPoly] (0.75,0) rectangle (1.0,0.25);
+%             \end{tikzpicture}
+%         \end{beamercolorbox}
+%     }
+% }
+
 \setbeamertemplate{footline}{
-    \hbox{
-        \begin{beamercolorbox}[wd=0.9\paperwidth, ht=2.25ex, dp=1ex, left]{white}
-            \hspace{0.3cm}\insertframenumber\,/\,\inserttotalframenumber
-            % \vspace{0.2cm}
+    \begin{beamercolorbox}[wd=\paperwidth, ht=2.25ex, dp=1ex, right]{white}
+            % \usebeamerfont{page number in head/foot}
+            {\bfseries\tiny \insertframenumber\,/\,\inserttotalframenumber}
+            \hspace{0.2cm}
         \end{beamercolorbox}
-        \begin{beamercolorbox}[wd=0.1\paperwidth, ht=2.25ex, dp=1ex, left]{white}
-            \vspace{-0.1cm}
-            \begin{tikzpicture}
-                \fill[RPoly] (0,0) rectangle (0.25,0.25);
-                \fill[OPoly] (0.25,0) rectangle (0.5,0.25);
-                \fill[VPoly] (0.5,0) rectangle (0.75,0.25);
-                \fill[BPoly] (0.75,0) rectangle (1.0,0.25);
-            \end{tikzpicture}
-        \end{beamercolorbox}
-    }
+    \begin{beamercolorbox}[wd=\paperwidth,center]{section in head/foot}
+        \vskip2.5ex
+        \vskip-\baselineskip
+        \insertnavigation{\paperwidth}%
+        \vskip1.125ex
+    \end{beamercolorbox}%
 }
 
 % Page de titre
@@ -219,6 +242,7 @@
 
 \AtBeginSection{
     \begin{frame}
+        \frametitle{Plan de cours}
         \sectionpage
     \end{frame}
 }
