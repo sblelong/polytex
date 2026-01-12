@@ -258,4 +258,4 @@
 
 % Ajouts extras
 % -----------------------------------
-\newcommand{\extra}[1]{{\footnotesize\itshape\color{primary!25}#1}}
+\newcommand{\extra}[1]{{\footnotesize\itshape\color{lightgray!175}#1}}
